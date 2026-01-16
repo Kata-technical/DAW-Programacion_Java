@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gsd.programacion</groupId>
-	<artifactId>ProyectoBase-DCATALAN</artifactId> <!--Cambiar aqui el nombre de proyecto-->
+	<artifactId>PracticaCine-dcatalan</artifactId> <!--Cambiar aqui el nombre de proyecto-->
 	<version>1.0</version>
 
 	<name>ProyectoBase</name>
