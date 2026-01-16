@@ -14,11 +14,11 @@ public class Cine {
 		char caracter = 'A';
 		int almacen = 0;
 		
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j <= 9; j++) {
+		for (int i = 1; i <= 8; i++) {
+			for (int j = 0; j < 9; j++) {
 				almacen = j;
 				almacen = almacen + 65;
-				caracter = (char)j;
+				caracter = (char)almacen;
 				
 				asientos[i][j] = new Butaca(i, caracter, false);
 				System.out.println(asientos[i][j].toString());
