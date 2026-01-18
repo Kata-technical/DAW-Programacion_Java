@@ -1,8 +1,24 @@
 package com.gsd.programacion;
-import java.util.random.*;
 
 public class Espectador {
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public double getDinero() {
+		return dinero;
+	}
+
+	@Override
+	public String toString() {
+		return "Espectador [nombre=" + nombre + ", edad=" + edad + ", dinero=" + dinero + "]";
+	}
+
 	private String nombre;
 	private int edad;
 	private double dinero;
@@ -13,8 +29,8 @@ public class Espectador {
 		int randomStr = (int)(Math.random()*10);
 		this.nombre = nombres[randomStr];
 		
-		double randomPr = (Math.random()*50);
-		this.dinero = randomPr;
+		double randomDin = (Math.random()*50);
+		this.dinero = Math.round(randomDin*100)/100.0;
 		
 		int random = (int)(Math.random()*85);
 		this.edad = random;
