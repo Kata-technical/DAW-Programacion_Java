@@ -25,10 +25,10 @@ public class Cine {
 
 		char columna = 'A';
 		int almacen = 0;
-		int fila = 8;
+		int fila = asientos.length;
 
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 9; j++) {
+		for (int i = 0; i < asientos.length; i++) {
+			for (int j = 0; j < asientos[0].length; j++) {
 				almacen = j;
 				almacen = almacen + 65;
 				columna = (char) almacen;
@@ -39,7 +39,36 @@ public class Cine {
 			fila--;
 		}
 	}
-
+	
+	public void generarEspectadores() {
+		for (int i = 0; i < asientos.length; i++) {
+			for (int j = 0; j < asientos[0].length; j++) {
+			Espectador espec = new Espectador();
+				if (espec.getDinero() >= precio && espec.getEdad() >= pelicula.getEdadMinima()) {
+					double restante = espec.getDinero() - precio;
+					System.out.println("restante="+restante);
+					restante = (restante*100.00)/100.00;
+					restante = (restante*100.00)/100.00;
+					asientos[i][j].setEspectador(espec);
+					asientos[i][j].setOcupado(true);
+					asientos[i][j].getEspectador().setDinero(restante);
+					}
+				}
+		}
+	}
+	
+	public void mostrarPatio () {
+		for (int i = 0; i < asientos.length; i++) {
+			for (int j = 0; j < asientos[0].length; j++) {
+				if (asientos[i][j].isOcupado()==true) {
+					System.out.print("❎");
+				} else {
+					System.out.print("🟥");
+				}
+			} System.out.println("");
+		}
+	}
+/*
 	public void generarEspectadores() {
 		for (int k = 0; k < 8 * 9; k++) {
 			boolean continuar = true;
@@ -63,5 +92,6 @@ public class Cine {
 			}
 		}
 	}
+	*/
 
 }

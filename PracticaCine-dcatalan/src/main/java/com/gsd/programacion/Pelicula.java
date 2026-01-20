@@ -2,6 +2,10 @@ package com.gsd.programacion;
 
 public class Pelicula {
 
+	public void setEdadMinima(int edadMinima) {
+		this.edadMinima = edadMinima;
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}

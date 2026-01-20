@@ -10,20 +10,26 @@ public class App {
 			
 			Pelicula peli = new Pelicula();
 	
-			Cine yelmo = new Cine(peli,3.99);
+			Cine yelmo = new Cine(peli,8.99);
+			yelmo.getPelicula().setEdadMinima(66);
 			yelmo.generarEspectadores();
 			
 			System.out.println("En el asiento: ");
 			System.out.println(yelmo.getAsientos()[3][4]);
 			System.out.println("Está: \n"+yelmo.getAsientos()[3][4].getEspectador());
-			System.out.println("\n"+peli.toString());
+			System.out.println(peli.toString());
 			
-			for (int i = 0; i < 8; i++) {
-				for (int j = 0; j < 9; j++) {
-					System.out.println(yelmo.getAsientos()[i][j]);
+			System.out.println();
+			
+			for (int i = 0; i < yelmo.getAsientos().length; i++) {
+				for (int j = 0; j < yelmo.getAsientos()[0].length; j++) {
+					if (yelmo.getAsientos()[i][j].isOcupado()) {
+					//System.out.println(yelmo.getAsientos()[i][j]);
 					System.out.println(yelmo.getAsientos()[i][j].getEspectador());
+					}
 				}
 			}
 			
+			yelmo.mostrarPatio();
 	}
 }

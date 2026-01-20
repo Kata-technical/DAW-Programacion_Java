@@ -2,6 +2,10 @@ package com.gsd.programacion;
 
 public class Espectador {
 	
+	public void setDinero(double dinero) {
+		this.dinero = dinero;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -30,7 +34,9 @@ public class Espectador {
 		this.nombre = nombres[randomStr];
 		
 		double randomDin = (Math.random()*50);
+		System.out.println("RANDOMDIN="+randomDin);
 		this.dinero = Math.round(randomDin*100)/100.0;
+		System.out.println("RANDOMDINFINAL="+this.dinero);
 		
 		int random = (int)(Math.random()*85);
 		this.edad = random;
