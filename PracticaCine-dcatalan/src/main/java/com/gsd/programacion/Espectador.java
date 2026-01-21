@@ -20,7 +20,7 @@ public class Espectador {
 
 	@Override
 	public String toString() {
-		return "Espectador [nombre=" + nombre + ", edad=" + edad + ", dinero=" + dinero + "]";
+		return String.format("Nombre: %s Edad: %d Dinero: %.2f",nombre,edad,dinero);
 	}
 
 	private String nombre;
@@ -34,9 +34,7 @@ public class Espectador {
 		this.nombre = nombres[randomStr];
 		
 		double randomDin = (Math.random()*50);
-		System.out.println("RANDOMDIN="+randomDin);
 		this.dinero = Math.round(randomDin*100)/100.0;
-		System.out.println("RANDOMDINFINAL="+this.dinero);
 		
 		int random = (int)(Math.random()*85);
 		this.edad = random;

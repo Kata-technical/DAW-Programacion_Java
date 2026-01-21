@@ -6,30 +6,27 @@ package com.gsd.programacion;
  */
 public class App {
 	public static void main(String[] args) {
-			System.out.println("Hello world!");
 			
-			Pelicula peli = new Pelicula();
-	
-			Cine yelmo = new Cine(peli,8.99);
-			yelmo.getPelicula().setEdadMinima(66);
-			yelmo.generarEspectadores();
+			Cine yelmo = new Cine(3);
+			yelmo.getSalas()[1].getPelicula().setEdadMinima(18);
+			yelmo.getSalas()[2].getPelicula().setEdadMinima(53);
+			yelmo.getSalas()[0].getPelicula().setEdadMinima(22);
+			yelmo.getSalas()[1].generarEspectadores();
+			yelmo.getSalas()[0].generarEspectadores();
+			yelmo.getSalas()[2].generarEspectadores();
 			
-			System.out.println("En el asiento: ");
-			System.out.println(yelmo.getAsientos()[3][4]);
-			System.out.println("Está: \n"+yelmo.getAsientos()[3][4].getEspectador());
-			System.out.println(peli.toString());
-			
-			System.out.println();
-			
-			for (int i = 0; i < yelmo.getAsientos().length; i++) {
-				for (int j = 0; j < yelmo.getAsientos()[0].length; j++) {
-					if (yelmo.getAsientos()[i][j].isOcupado()) {
-					//System.out.println(yelmo.getAsientos()[i][j]);
-					System.out.println(yelmo.getAsientos()[i][j].getEspectador());
+			int valor = 0;
+			for (int i = 0; i < yelmo.getSalas()[valor].getAsientos().length; i++) {
+				for (int j = 0; j < yelmo.getSalas()[valor].getAsientos()[0].length; j++) {
+					if (yelmo.getSalas()[valor].getAsientos()[i][j].isOcupado()) {
+					System.out.println(yelmo.getSalas()[valor].getAsientos()[i][j].getEspectador());
 					}
 				}
 			}
 			
-			yelmo.mostrarPatio();
+			for (int i = 0; i < yelmo.getSalas().length; i++) {
+				System.out.println(" ------------------------- ");
+			yelmo.getSalas()[i].mostrarPatio();
+			}
 	}
 }

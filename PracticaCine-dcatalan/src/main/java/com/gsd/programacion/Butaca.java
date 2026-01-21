@@ -36,8 +36,7 @@ public class Butaca {
 	private boolean ocupado;
 	private Espectador espectador;
 
-
-
+	
 	public Butaca (int fila, char columna, boolean ocupado) {
 		this.fila = fila;
 		this.columna = columna;

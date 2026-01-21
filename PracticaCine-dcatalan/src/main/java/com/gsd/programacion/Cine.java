@@ -2,96 +2,43 @@ package com.gsd.programacion;
 
 public class Cine {
 
-	public Butaca[][] getAsientos() {
-		return asientos;
+	public Sala[] getSalas() {
+		return salas;
 	}
 
-	public Pelicula getPelicula() {
-		return pelicula;
-	}
+	private Sala[] salas;
 
-	public double getPrecio() {
-		return precio;
-	}
+	public Cine(int numSalas) {
+		this.salas = new Sala[numSalas];
 
-	private Pelicula pelicula;
-	private double precio;
-	private Butaca[][] asientos;
-
-	public Cine(Pelicula pelicula, double precio) {
-		this.pelicula = pelicula;
-		this.precio = precio;
-		this.asientos = new Butaca[8][9];
-
-		char columna = 'A';
-		int almacen = 0;
-		int fila = asientos.length;
-
-		for (int i = 0; i < asientos.length; i++) {
-			for (int j = 0; j < asientos[0].length; j++) {
-				almacen = j;
-				almacen = almacen + 65;
-				columna = (char) almacen;
-
-				asientos[i][j] = new Butaca(fila, columna, false);
-
-			}
-			fila--;
-		}
-	}
-	
-	public void generarEspectadores() {
-		for (int i = 0; i < asientos.length; i++) {
-			for (int j = 0; j < asientos[0].length; j++) {
-			Espectador espec = new Espectador();
-				if (espec.getDinero() >= precio && espec.getEdad() >= pelicula.getEdadMinima()) {
-					double restante = espec.getDinero() - precio;
-					System.out.println("restante="+restante);
-					restante = (restante*100.00)/100.00;
-					restante = (restante*100.00)/100.00;
-					asientos[i][j].setEspectador(espec);
-					asientos[i][j].setOcupado(true);
-					asientos[i][j].getEspectador().setDinero(restante);
-					}
-				}
-		}
-	}
-	
-	public void mostrarPatio () {
-		for (int i = 0; i < asientos.length; i++) {
-			for (int j = 0; j < asientos[0].length; j++) {
-				if (asientos[i][j].isOcupado()==true) {
-					System.out.print("❎");
-				} else {
-					System.out.print("🟥");
-				}
-			} System.out.println("");
-		}
-	}
-/*
-	public void generarEspectadores() {
-		for (int k = 0; k < 8 * 9; k++) {
-			boolean continuar = true;
-			Espectador espec = new Espectador();
-			if (espec.getDinero() >= precio && espec.getEdad() >= pelicula.getEdadMinima()) {
-				for (int i = 0; i < 8; i++) {
-					for (int j = 0; j < 9; j++) {
-						if (asientos[i][j].isOcupado() == false) {
-							asientos[i][j].setEspectador(espec);
-							asientos[i][j].setOcupado(true);
-							continuar = false;
-							break;
-						} else {
-							continue;
-						}
-					}
-					if (!continuar) break;
-				}
-			} else {
+		// FIXME
+		int cont = 0;
+		for (int i = 0; i < numSalas; i++) {
+			Pelicula peli = new Pelicula();
+			Sala sala = new Sala(peli, 8.99, 8, 12);
+			
+			if (i == 0) {
+				salas[i] = sala;
 				continue;
 			}
+			if (seRepite(salas, sala, cont)) {
+				i--;
+				cont++;
+			} else {
+				salas[i] = sala;
+				cont++;
+			}
+
 		}
 	}
-	*/
+
+	private boolean seRepite(Sala[] salas, Sala sala, int contador) {
+		for (int i = 0; i < contador; i++) {
+			if (salas[i].getPelicula().getTitulo() == sala.getPelicula().getTitulo())
+				return true;
+		}
+		return false;
+
+	}
 
 }
