@@ -8,9 +8,7 @@ public class App {
 	public static void main(String[] args) {
 			
 			Cine yelmo = new Cine(3);
-			yelmo.getSalas()[1].getPelicula().setEdadMinima(18);
 			yelmo.getSalas()[2].getPelicula().setEdadMinima(53);
-			yelmo.getSalas()[0].getPelicula().setEdadMinima(22);
 			yelmo.getSalas()[1].generarEspectadores();
 			yelmo.getSalas()[0].generarEspectadores();
 			yelmo.getSalas()[2].generarEspectadores();
