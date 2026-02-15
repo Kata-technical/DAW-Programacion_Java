@@ -67,13 +67,13 @@ public abstract class Personaje implements Combatible {
 	
 	public abstract void mostrarInfo();
 	
-	public Personaje(String nombre,int salud, int ataque, int defensa, int pociones, int nivel) {
-		if (ataque < 0 || defensa < 0)
-			return;
-		if (pociones < 0 || pociones > 5)
-			return;
-		if (nivel < 0 || nivel > 10)
-			return;
+	public Personaje(String nombre,int salud, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
+
+	    if (salud < 0) throw new EstadisticaInvalidaException("error");
+	    if (ataque < 0) throw new EstadisticaInvalidaException("error");
+	    if (defensa < 0) throw new EstadisticaInvalidaException("error");
+	    if (pociones < 0 || pociones > 5) throw new EstadisticaInvalidaException("error");
+	    if (nivel < 0 || nivel > 10) throw new EstadisticaInvalidaException("error");
 		
 		this.nombre = nombre;
 		this.saludInicial = 100;
@@ -89,11 +89,16 @@ public abstract class Personaje implements Combatible {
 		if (daño < 0)
 			daño = 0;
 		this.salud = this.salud - daño;
-		if (this.salud == 0) {
+		if (this.salud <= 0) {
 			System.out.println("muelto");
 		}
 	}
 	
+	public int atacar(Personaje enemigo) {
+		int salud = enemigo.getSalud() - this.getAtaque();
+		enemigo.setSalud(salud);
+		return this.getAtaque();
+	}	
 	
 	public boolean estaVivo() {
 		if (this.salud > 0)
@@ -102,12 +107,12 @@ public abstract class Personaje implements Combatible {
 			return false;
 	}
 	
-	public void autoCurar() {
-		if (this.salud < (this.saludInicial / 2)) {
+	public boolean autoCurar() {
+		if (this.salud < (this.saludInicial / 2) && this.pociones > 0) {
 			this.pociones --;
 			double random = (Math.random() * (1.25 - 1.15 + 1) + 1.15);
 			this.salud *=random;
-		}
-	};
-	
+			return true;
+		} return false;
+	}
 }

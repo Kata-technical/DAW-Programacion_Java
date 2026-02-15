@@ -1,7 +1,7 @@
 package com.gsd.programacion;
 
 public class Mago extends Personaje{
-	public Mago(String nombre, int salud, int ataque, int defensa, int pociones, int nivel) {
+	public Mago(String nombre, int salud, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
 		super(nombre, salud, ataque, defensa, pociones, nivel);
 		
 		int saludEspecifica = this.getSalud();
@@ -13,12 +13,13 @@ public class Mago extends Personaje{
 				
 	}
 	
-	public void lanzarHechizo (Personaje enemigo) {
-		int salud = enemigo.getSalud() - this.getAtaque();
+	public int lanzarHechizo (Personaje enemigo) {
+		int salud = enemigo.getSalud() - this.getAtaque(); //IGNORA LA DEFENSA D
 		enemigo.setSalud(salud);
+		return this.getAtaque();
 	}
 	
-	public void autoCurarse() {
+	public void autoCurarse() { // este metodo pa q
 		if (this.getSalud() < (this.getSaludInicial() / 2)) {
 			int pociones = this.getPociones();
 			this.setPociones(pociones--);
@@ -36,11 +37,7 @@ public class Mago extends Personaje{
 				+ "\nATAQUE: " + this.getAtaque()
 				+ "\nPOCIONES: " + this.getPociones()
 				+ "\nNIVEL: " + this.getNivel()
-				+ "\nSALUD: " + this.getSalud());
+				+ "\nSALUD: " + this.getSaludInicial());
 	}
-	
-	public void atacar(Personaje enemigo) {
-		int salud = enemigo.getSalud() - this.getAtaque();
-		enemigo.setSalud(salud);
-	}	
+		
 }

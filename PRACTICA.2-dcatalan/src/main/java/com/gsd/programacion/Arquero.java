@@ -1,7 +1,7 @@
 package com.gsd.programacion;
 
 public class Arquero extends Personaje{
-	public Arquero(String nombre, int salud, int ataque, int defensa, int pociones, int nivel) {
+	public Arquero(String nombre, int salud, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException{
 		super(nombre, salud, ataque, defensa, pociones, nivel);
 		
 		double[] array = super.getArray();
@@ -12,13 +12,14 @@ public class Arquero extends Personaje{
 		super.setAtaque(ataqueEspecifico);
 	}
 	
-	public void disparoPreciso (Personaje enemigo) {
+	public int disparoPreciso (Personaje enemigo) {
 		double random = Math.random();
 		if (random > 0.75) {
 			double ataque = this.getAtaque() * 2;
 			int salud = enemigo.getSalud() - (int)ataque;
 			enemigo.setSalud(salud);
-		}
+			return (int)ataque;
+		} return 0;
 	}
 	
 	public void mostrarInfo() {
@@ -27,11 +28,6 @@ public class Arquero extends Personaje{
 				+ "\nATAQUE: " + this.getAtaque()
 				+ "\nPOCIONES: " + this.getPociones()
 				+ "\nNIVEL: " + this.getNivel()
-				+ "\nSALUD: " + this.getSalud());
+				+ "\nSALUD: " + this.getSaludInicial());
 	}
-	
-	public void atacar(Personaje enemigo) {
-		int salud = enemigo.getSalud() - this.getAtaque();
-		enemigo.setSalud(salud);
-	}	
 }

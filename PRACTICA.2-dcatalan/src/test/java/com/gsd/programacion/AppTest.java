@@ -1,4 +1,4 @@
-package com.gsd.programacion;
+package com.gsd.programacion;/*
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -17,4 +17,4 @@ public class AppTest
     {
         assertTrue( true );
     }
-}
+}*/
