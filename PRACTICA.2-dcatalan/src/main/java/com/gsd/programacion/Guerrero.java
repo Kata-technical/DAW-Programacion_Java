@@ -6,7 +6,8 @@ public class Guerrero extends Personaje{
 		super(nombre, salud, ataque, defensa, pociones, nivel);
 
 		double[] arrayNivel = super.getArray();
-		double saludEspecifica = 120 * arrayNivel[nivel];
+		double saludEspecifica = salud + 120 * arrayNivel[nivel];
+		super.setSalud((int)saludEspecifica);
 		super.setSaludInicial((int)saludEspecifica);
 		
 		int defensaEspecifica = getDefensa() + 5;
@@ -14,14 +15,12 @@ public class Guerrero extends Personaje{
 		
 	}
 	
-	public int golpeCritico (Personaje enemigo) {
+	public void golpeCritico (Personaje enemigo) {
 		double random = Math.random();
 		if (random > 0.5) {
 			double ataque = this.getAtaque() * 2;
-			int salud = enemigo.getSalud() - (int)ataque;
-			enemigo.setSalud(salud);
-			return (int)ataque;
-		} return 0;
+			System.out.println(this.getNombre()+" ha hecho un golpe critio a "+enemigo.getNombre()+" causandole "+enemigo.defender((int)ataque)+" de daño");
+		} System.out.println(this.getNombre()+" intento hacer golpe critico y no pudo"); 
 	}
 	
 	public void mostrarInfo() {
@@ -30,6 +29,6 @@ public class Guerrero extends Personaje{
 				+ "\nATAQUE: " + this.getAtaque()
 				+ "\nPOCIONES: " + this.getPociones()
 				+ "\nNIVEL: " + this.getNivel()
-				+ "\nSALUD: " + this.getSaludInicial());
+				+ "\nSALUD: " + this.getSalud());
 	}
 }

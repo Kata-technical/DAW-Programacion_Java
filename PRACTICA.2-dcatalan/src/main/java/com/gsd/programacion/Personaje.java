@@ -2,20 +2,20 @@ package com.gsd.programacion;
 
 public abstract class Personaje implements Combatible {
 
+	public int getSaludInicial() {
+		return saludInicial;
+	}
+
+	public void setSaludInicial(int saludInicial) {
+		this.saludInicial = saludInicial;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
 
 	public int getSalud() {
 		return this.salud;
-	}
-	
-	public int getSaludInicial() {
-		return this.saludInicial;
-	}
-	
-	public int setSaludInicial(int saludInicial) {
-		return this.saludInicial = saludInicial;
 	}
 	
 	public void setSalud (int salud) {
@@ -56,7 +56,7 @@ public abstract class Personaje implements Combatible {
 
 	private String nombre;
 	private int saludInicial;
-	private int salud;
+	private int salud = 100;
 	private int ataque;
 	private int defensa;
 	private int pociones;
@@ -69,35 +69,32 @@ public abstract class Personaje implements Combatible {
 	
 	public Personaje(String nombre,int salud, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
 
-	    if (salud < 0) throw new EstadisticaInvalidaException("error");
-	    if (ataque < 0) throw new EstadisticaInvalidaException("error");
-	    if (defensa < 0) throw new EstadisticaInvalidaException("error");
-	    if (pociones < 0 || pociones > 5) throw new EstadisticaInvalidaException("error");
-	    if (nivel < 0 || nivel > 10) throw new EstadisticaInvalidaException("error");
+	    if (salud < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber salud negativa");
+	    if (ataque < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber ataque negativo");
+	    if (defensa < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber defensa negativa");
+	    if (pociones < 0 || pociones > 5) throw new EstadisticaInvalidaException("ERROR. No puede haber pociones negativas ni mas de 5");
+	    if (nivel < 0 || nivel > 10) throw new EstadisticaInvalidaException("ERROR. No puedes tener un nivel inferior a 0 o superior a 10");
 		
 		this.nombre = nombre;
-		this.saludInicial = 100;
-		this.salud = this.saludInicial;
+		this.salud = salud;
+		this.saludInicial = salud;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.pociones = pociones;
 		this.nivel = nivel;
 	}
 
-	public void defender (int daño) {
-		daño = this.defensa - daño;
+	public int defender (int daño) {
+		daño = daño - this.defensa;
 		if (daño < 0)
 			daño = 0;
 		this.salud = this.salud - daño;
-		if (this.salud <= 0) {
-			System.out.println("muelto");
-		}
+		return daño;
 	}
 	
-	public int atacar(Personaje enemigo) {
-		int salud = enemigo.getSalud() - this.getAtaque();
-		enemigo.setSalud(salud);
-		return this.getAtaque();
+	public void atacar(Personaje enemigo) {
+		int dañoTotal = enemigo.defender(this.ataque);
+		System.out.println(this.getNombre()+" ha atacado a "+enemigo.getNombre()+" causandole "+dañoTotal+" de daño");
 	}	
 	
 	public boolean estaVivo() {
@@ -112,6 +109,7 @@ public abstract class Personaje implements Combatible {
 			this.pociones --;
 			double random = (Math.random() * (1.25 - 1.15 + 1) + 1.15);
 			this.salud *=random;
+			System.out.println(this.getNombre() + " se ha curado!");
 			return true;
 		} return false;
 	}

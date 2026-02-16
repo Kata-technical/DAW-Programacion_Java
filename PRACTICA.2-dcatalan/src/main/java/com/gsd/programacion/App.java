@@ -4,6 +4,8 @@ public class App {
 	public static void main(String[] args) {
 
 //guerrero-Thor-15-20-3-3-8 mago-Merlin-45-25-4-5-7
+//mago-Gandalf-55-33-5-3-2 arquero-Robin-110-77-5-4-9
+//arquero-LebronJames-24-31-34-3-5 guerrero-Goliat-19-53-23-1-6
 
 		Personaje[] arrayP = new Personaje[2];
 
@@ -16,7 +18,7 @@ public class App {
 			int defensa = Integer.parseInt(campos[4]);
 			int pociones = Integer.parseInt(campos[5]);
 			int nivel = Integer.parseInt(campos[6]);
-			
+
 			try {
 				if (campos[0].equalsIgnoreCase("Guerrero")) {
 					Guerrero guerrero = new Guerrero(campos[1], vida, ataque, defensa, pociones, nivel);
@@ -34,7 +36,7 @@ public class App {
 					arrayP[i] = arquero;
 					continue;
 				} else {
-					throw new PersonajeInvalidoException("error");
+					throw new PersonajeInvalidoException("ERROR. El tipo de personaje tiene que ser: Arquero, Mago o Guerrero");
 				}
 
 			} catch (PersonajeInvalidoException | EstadisticaInvalidaException e) {
@@ -46,8 +48,7 @@ public class App {
 		int atacante = 0;
 		int defensa = 1;
 		int turno = 0;
-		int daño = 0;
-
+		
 		System.out.println("-----------------------\nBATALLA INICIADA");
 		do {
 			for (int i = 0; i < 2; i++) {
@@ -59,39 +60,34 @@ public class App {
 					defensa = 0;
 				}
 				double random = Math.random();
-				if (arrayP[atacante].autoCurar() == true) {
-					System.out.println(arrayP[atacante].getNombre() + " se ha curado!");
+
+				if (arrayP[atacante] instanceof Mago && ((Mago) arrayP[atacante]).autoCurarse() == true) {
 					turno++;
 					continue;
 				}
+
+				if (!(arrayP[atacante] instanceof Mago) && arrayP[atacante].autoCurar() == true) {
+					turno++;
+					continue;
+				}
+				
 				if (random > 0.5) {
-					daño = arrayP[atacante].atacar(arrayP[defensa]);
-					arrayP[defensa].defender(daño);
-					System.out.println(arrayP[atacante].getNombre() + " ha atacado a " + arrayP[defensa].getNombre()
-							+ " causandole " + daño + " de daño");
+					arrayP[atacante].atacar(arrayP[defensa]);
 					turno++;
 					continue;
 				} else {
 					if (arrayP[atacante] instanceof Guerrero) {
-						daño = ((Guerrero) arrayP[atacante]).golpeCritico(arrayP[defensa]);
-						arrayP[defensa].defender(daño);
-						System.out.println(arrayP[atacante].getNombre() + " ha causado un golpe critico a "
-								+ arrayP[defensa].getNombre() + " causandole " + daño + " de daño");
+						((Guerrero) arrayP[atacante]).golpeCritico(arrayP[defensa]);
 						turno++;
 						continue;
 					}
 					if (arrayP[atacante] instanceof Mago) {
-						daño = ((Mago) arrayP[atacante]).lanzarHechizo(arrayP[defensa]);
-						System.out.println(arrayP[atacante].getNombre() + " le ha lanzado un hechizo a "
-								+ arrayP[defensa].getNombre() + " causandole " + daño + " de daño");
+						((Mago) arrayP[atacante]).lanzarHechizo(arrayP[defensa]);
 						turno++;
 						continue;
 					}
 					if (arrayP[atacante] instanceof Arquero) {
-						daño = ((Arquero) arrayP[atacante]).disparoPreciso(arrayP[defensa]);
-						arrayP[defensa].defender(daño);
-						System.out.println(arrayP[atacante].getNombre() + " le ha disparado a "
-								+ arrayP[defensa].getNombre() + " causandole " + daño + " de daño");
+						((Arquero) arrayP[atacante]).disparoPreciso(arrayP[defensa]);
 						turno++;
 						continue;
 					}
