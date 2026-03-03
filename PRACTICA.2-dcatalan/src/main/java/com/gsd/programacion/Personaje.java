@@ -2,6 +2,23 @@ package com.gsd.programacion;
 
 public abstract class Personaje implements Combatible {
 
+	public abstract void mostrarInfo();
+	
+	public Personaje(String nombre, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
+
+	    if (ataque < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber ataque negativo");
+	    if (defensa < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber defensa negativa");
+	    if (pociones < 0 || pociones > 5) throw new EstadisticaInvalidaException("ERROR. No puede haber pociones negativas ni mas de 5");
+	    if (nivel < 0 || nivel > 10) throw new EstadisticaInvalidaException("ERROR. No puedes tener un nivel inferior a 0 o superior a 10");
+		
+		this.nombre = nombre;
+		this.saludInicial = 100;
+		this.ataque = ataque;
+		this.defensa = defensa;
+		this.pociones = pociones;
+		this.nivel = nivel;
+	}
+	
 	public int getSaludInicial() {
 		return saludInicial;
 	}
@@ -65,24 +82,7 @@ public abstract class Personaje implements Combatible {
 		1.1,1.3,1.5,1.7,2.0,2.2,2.4,2.6,2.9,3.2	
 	};
 	
-	public abstract void mostrarInfo();
 	
-	public Personaje(String nombre,int salud, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
-
-	    if (salud < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber salud negativa");
-	    if (ataque < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber ataque negativo");
-	    if (defensa < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber defensa negativa");
-	    if (pociones < 0 || pociones > 5) throw new EstadisticaInvalidaException("ERROR. No puede haber pociones negativas ni mas de 5");
-	    if (nivel < 0 || nivel > 10) throw new EstadisticaInvalidaException("ERROR. No puedes tener un nivel inferior a 0 o superior a 10");
-		
-		this.nombre = nombre;
-		this.salud = salud;
-		this.saludInicial = salud;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.pociones = pociones;
-		this.nivel = nivel;
-	}
 
 	public int defender (int daño) {
 		daño = daño - this.defensa;

@@ -3,9 +3,9 @@ package com.gsd.programacion;
 public class App {
 	public static void main(String[] args) {
 
-//guerrero-Thor-15-20-3-3-8 mago-Merlin-45-25-4-5-7
-//mago-Gandalf-55-33-5-3-2 arquero-Robin-110-77-5-4-9
-//arquero-LebronJames-24-31-34-3-5 guerrero-Goliat-19-53-23-1-6
+//guerrero-Thor-15-20-3-3 mago-Merlin-45-25-4-5
+//guerrero-Thor-15-20-3-3 mago-Merlin-45-25-19-5 POCIONES MAL
+//cantante-Thor-15-20-3-3 mago-Merlin-45-25-4-5 TIPO INVALIDO
 
 		Personaje[] arrayP = new Personaje[2];
 
@@ -13,25 +13,24 @@ public class App {
 			String personaje = args[i];
 			String[] campos = personaje.split("-");
 
-			int vida = Integer.parseInt(campos[2]);
-			int ataque = Integer.parseInt(campos[3]);
-			int defensa = Integer.parseInt(campos[4]);
-			int pociones = Integer.parseInt(campos[5]);
-			int nivel = Integer.parseInt(campos[6]);
+			int ataque = Integer.parseInt(campos[2]);
+			int defensa = Integer.parseInt(campos[3]);
+			int pociones = Integer.parseInt(campos[4]);
+			int nivel = Integer.parseInt(campos[5]);
 
 			try {
 				if (campos[0].equalsIgnoreCase("Guerrero")) {
-					Guerrero guerrero = new Guerrero(campos[1], vida, ataque, defensa, pociones, nivel);
+					Guerrero guerrero = new Guerrero(campos[1], ataque, defensa, pociones, nivel);
 					guerrero.mostrarInfo();
 					arrayP[i] = guerrero;
 					continue;
 				} else if (campos[0].equalsIgnoreCase("Mago")) {
-					Mago mago = new Mago(campos[1], vida, ataque, defensa, pociones, nivel);
+					Mago mago = new Mago(campos[1], ataque, defensa, pociones, nivel);
 					mago.mostrarInfo();
 					arrayP[i] = mago;
 					continue;
 				} else if (campos[0].equalsIgnoreCase("Arquero")) {
-					Arquero arquero = new Arquero(campos[1], vida, ataque, defensa, pociones, nivel);
+					Arquero arquero = new Arquero(campos[1], ataque, defensa, pociones, nivel);
 					arquero.mostrarInfo();
 					arrayP[i] = arquero;
 					continue;

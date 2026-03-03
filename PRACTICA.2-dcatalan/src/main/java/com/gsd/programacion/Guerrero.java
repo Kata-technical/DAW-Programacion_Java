@@ -2,11 +2,11 @@ package com.gsd.programacion;
 
 public class Guerrero extends Personaje{
 
-	public Guerrero(String nombre, int salud, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException{
-		super(nombre, salud, ataque, defensa, pociones, nivel);
+	public Guerrero(String nombre, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException{
+		super(nombre, ataque, defensa, pociones, nivel);
 
 		double[] arrayNivel = super.getArray();
-		double saludEspecifica = salud + 120 * arrayNivel[nivel];
+		double saludEspecifica = 120 * arrayNivel[nivel];
 		super.setSalud((int)saludEspecifica);
 		super.setSaludInicial((int)saludEspecifica);
 		
@@ -24,7 +24,7 @@ public class Guerrero extends Personaje{
 	}
 	
 	public void mostrarInfo() {
-		System.out.println("INFO DE EL GUERRERO: \n"
+		System.out.println("INFO DE EL GUERRERO:"+this.getNombre()+" \n"
 				+ "DEFENSA: " + this.getDefensa()
 				+ "\nATAQUE: " + this.getAtaque()
 				+ "\nPOCIONES: " + this.getPociones()
