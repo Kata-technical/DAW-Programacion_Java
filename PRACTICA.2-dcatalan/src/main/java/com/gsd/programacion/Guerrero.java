@@ -2,8 +2,8 @@ package com.gsd.programacion;
 
 public class Guerrero extends Personaje{
 
-	public Guerrero(String nombre, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException{
-		super(nombre, ataque, defensa, pociones, nivel);
+	public Guerrero(String nombre, int ataque, int defensa, int nivel, int pociones) throws EstadisticaInvalidaException{
+		super(nombre, ataque, defensa, nivel, pociones);
 
 		double[] arrayNivel = super.getArray();
 		double saludEspecifica = 120 * arrayNivel[nivel];

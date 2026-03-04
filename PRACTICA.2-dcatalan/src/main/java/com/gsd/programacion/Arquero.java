@@ -1,8 +1,8 @@
 package com.gsd.programacion;
 
 public class Arquero extends Personaje{
-	public Arquero(String nombre, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException{
-		super(nombre, ataque, defensa, pociones, nivel);
+	public Arquero(String nombre, int ataque, int defensa, int nivel, int pociones) throws EstadisticaInvalidaException{
+		super(nombre, ataque, defensa, nivel, pociones);
 		
 		double[] array = super.getArray();
 		int defensaEspecifica = (getDefensa() + 3)*(int)array[nivel];

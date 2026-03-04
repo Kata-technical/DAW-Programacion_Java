@@ -15,22 +15,22 @@ public class App {
 
 			int ataque = Integer.parseInt(campos[2]);
 			int defensa = Integer.parseInt(campos[3]);
-			int pociones = Integer.parseInt(campos[4]);
-			int nivel = Integer.parseInt(campos[5]);
+			int nivel = Integer.parseInt(campos[4]);
+			int pociones = Integer.parseInt(campos[5]);
 
 			try {
 				if (campos[0].equalsIgnoreCase("Guerrero")) {
-					Guerrero guerrero = new Guerrero(campos[1], ataque, defensa, pociones, nivel);
+					Guerrero guerrero = new Guerrero(campos[1], ataque, defensa, nivel, pociones);
 					guerrero.mostrarInfo();
 					arrayP[i] = guerrero;
 					continue;
 				} else if (campos[0].equalsIgnoreCase("Mago")) {
-					Mago mago = new Mago(campos[1], ataque, defensa, pociones, nivel);
+					Mago mago = new Mago(campos[1], ataque, defensa, nivel, pociones);
 					mago.mostrarInfo();
 					arrayP[i] = mago;
 					continue;
 				} else if (campos[0].equalsIgnoreCase("Arquero")) {
-					Arquero arquero = new Arquero(campos[1], ataque, defensa, pociones, nivel);
+					Arquero arquero = new Arquero(campos[1], ataque, defensa, nivel, pociones);
 					arquero.mostrarInfo();
 					arrayP[i] = arquero;
 					continue;

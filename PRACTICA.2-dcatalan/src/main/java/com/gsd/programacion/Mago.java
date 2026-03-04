@@ -1,8 +1,8 @@
 package com.gsd.programacion;
 
 public class Mago extends Personaje{
-	public Mago(String nombre, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
-		super(nombre, ataque, defensa, pociones, nivel);
+	public Mago(String nombre, int ataque, int defensa, int nivel, int pociones) throws EstadisticaInvalidaException {
+		super(nombre, ataque, defensa, nivel, pociones);
 		
 		double saludEspecifica = 80;
 		super.setSalud((int)saludEspecifica);

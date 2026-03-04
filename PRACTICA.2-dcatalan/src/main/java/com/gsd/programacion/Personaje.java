@@ -4,7 +4,7 @@ public abstract class Personaje implements Combatible {
 
 	public abstract void mostrarInfo();
 	
-	public Personaje(String nombre, int ataque, int defensa, int pociones, int nivel) throws EstadisticaInvalidaException {
+	public Personaje(String nombre, int ataque, int defensa, int nivel, int pociones) throws EstadisticaInvalidaException {
 
 	    if (ataque < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber ataque negativo");
 	    if (defensa < 0) throw new EstadisticaInvalidaException("ERROR. No puede haber defensa negativa");
