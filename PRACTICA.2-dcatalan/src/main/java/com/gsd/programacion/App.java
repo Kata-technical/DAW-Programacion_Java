@@ -41,6 +41,9 @@ public class App {
 			} catch (PersonajeInvalidoException | EstadisticaInvalidaException e) {
 				System.out.println(e.getMessage());
 				return;
+			} catch (Exception e ) {
+				System.err.println(e.getMessage());
+				return;
 			}
 		}
 

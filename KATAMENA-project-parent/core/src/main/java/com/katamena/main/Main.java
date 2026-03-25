@@ -6,6 +6,6 @@ public class Main extends Game {
 
     @Override
     public void create() {
-        setScreen(new PantallaMenu(this));  // arranca en el menú
+        setScreen(new PantallaMenu(this));  // arranca en el menú epicamente
     }
 }
