@@ -129,7 +129,7 @@ public class PantallaJuego implements Screen {
         if (Gdx.input.isKeyPressed(Keys.RIGHT) || Gdx.input.isKeyPressed(Keys.D)) velocityX =  speed;
         if (Gdx.input.isKeyPressed(Keys.LEFT)  || Gdx.input.isKeyPressed(Keys.A)) velocityX = -speed;
 
-        if ((Gdx.input.isKeyJustPressed(Keys.SPACE) || Gdx.input.isKeyJustPressed(Keys.W)) && onGround) {
+        if ((Gdx.input.isKeyJustPressed(Keys.SPACE) || Gdx.input.isKeyJustPressed(Keys.W) || Gdx.input.isKeyJustPressed(Keys.UP)) && onGround) {
             velocityY = jumpForce;
             onGround  = false;
         }
@@ -137,6 +137,7 @@ public class PantallaJuego implements Screen {
         // Colisiones horizontales
         x += velocityX * delta;
         Rectangle jugador = new Rectangle(x, y, width, height);
+        
         for (Rectangle p : plataformas) {
             if (jugador.overlaps(p)) {
                 if (velocityX > 0) x = p.x - width;
@@ -204,7 +205,7 @@ public class PantallaJuego implements Screen {
         batch.begin();
         font.draw(batch, "Nivel: "   + nivel,   20, Gdx.graphics.getHeight() - 20);
         font.draw(batch, "Muertes: " + muertes, 20, Gdx.graphics.getHeight() - 55);
-        font.draw(batch, "Aaron puta", 80, 40);
+        //font.draw(batch, "Aaron puta", 80, 40);
         batch.end();
     }
 
@@ -216,7 +217,7 @@ public class PantallaJuego implements Screen {
     }
 
     private void siguienteNivel() {
-        if (nivel + 1 > 2) {  // cambia el 2 por el número máximo de niveles que tengas
+        if (nivel + 1 > 2) {  // 2 es el max nivel q tenga claro
             game.setScreen(new PantallaMenu(game));  // vuelve al menú si no hay más niveles
         } else {
             game.setScreen(new PantallaJuego(game, nivel + 1));

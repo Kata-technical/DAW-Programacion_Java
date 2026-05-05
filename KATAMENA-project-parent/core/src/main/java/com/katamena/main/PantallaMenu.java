@@ -21,7 +21,7 @@ public class PantallaMenu implements Screen {
         batch  = new SpriteBatch();
         font   = new BitmapFont();
         layout = new GlyphLayout();
-        font.getData().setScale(1.8f);  // más pequeño que antes (era 3f)
+        font.getData().setScale(1.8f);
         font.setColor(Color.WHITE);
     }
 
@@ -35,13 +35,11 @@ public class PantallaMenu implements Screen {
 
         batch.begin();
 
-        // Título
         String titulo = "Bienvenido al juego de Kata";
         layout.setText(font, titulo);
         float tituloX = (screenW - layout.width) / 2f;
         font.draw(batch, titulo, tituloX, screenH * 0.7f);
 
-        // Subtítulo
         String sub = "Pulsa ENTER para alucinar como si \n te hubieras tomado un hongo de esos :p";
         layout.setText(font, sub);
         float subX = (screenW - layout.width) / 2f;
@@ -50,7 +48,7 @@ public class PantallaMenu implements Screen {
         batch.end();
 
         if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
-            game.setScreen(new PantallaJuego(game, 1));
+            game.setScreen(new PantallaJuego(game, 1)); // aqui le paso el nivel
             dispose();
         }
     }
