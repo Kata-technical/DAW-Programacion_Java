@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: david
+Build-Jdk: 21.0.8
+Class-Path: mariadb-java-client-3.3.3.jar waffle-jna-3.3.0.jar jna-5.13.
+ 0.jar jna-platform-5.13.0.jar jcl-over-slf4j-2.0.7.jar slf4j-api-2.0.7.
+ jar caffeine-2.9.3.jar error_prone_annotations-2.10.0.jar checker-qual-
+ 3.32.0.jar
+Main-Class: com.gsd.programacion.App
+Created-By: Maven Integration for Eclipse
+
