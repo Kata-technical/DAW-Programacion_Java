@@ -24,13 +24,7 @@ public class Exploradora extends Nave {
 		return false;
 	}
 
-	public void repostar() {
-		if (this.getUbicacionActual().planeta().equalsIgnoreCase("base")) {
-			this.setCombustible(100);
-		} else {
-			System.out.println("Tienes que estar en base");
-		}
-	}
+
 
 	public void mostrarReporte() {
 		System.out.println("[ESCANEO] Riesgo ambiental reducido a la mitad."); // rehacer luego

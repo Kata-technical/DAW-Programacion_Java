@@ -30,15 +30,8 @@ public class Carga extends Nave {
 
 	public boolean tieneAutonomia(double distancia) {
 		// no se a que se refiere exactamente (VERIFICA SI PUEDE LLEGAR AL DESTINO)
+		
 		return false;
-	}
-
-	public void repostar() {
-		if (this.getUbicacionActual().planeta().equalsIgnoreCase("base")) {
-			this.setCombustible(100);
-		} else {
-			System.out.println("Tienes que estar en base");
-		}
 	}
 
 	public void mostrarReporte() {
