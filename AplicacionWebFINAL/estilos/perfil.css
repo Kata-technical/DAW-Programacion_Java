@@ -1,0 +1,113 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+
+/*-------------------------------------------------------------------------------------*/
+main {
+    background: url("../imagenes/banner_general.png") no-repeat center/cover;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+#contenedor {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#contenedor a {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: red;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+#contenedor a.botonNegro {
+    background-color: black;
+}
+
+#contenedor a.botonNegro:hover {
+    background-color: rgb(59, 59, 59);
+}
+
+#contenedor a:hover {
+    background-color: brown;
+}
+
+
+
+#linea {
+    color: darkgray;
+    width: 100%;
+}
+
+
+span {
+    font-size: xx-large;
+}
+
+#datos {
+    background-color: gray;
+    padding: 7px;
+    color: white;
+    border-radius: 7px;
+}
+
+#tarjeta-suscripcion {
+    margin: 10px;
+    padding: 10px;
+    background-image: linear-gradient(to bottom, black, rgb(221, 221, 221));
+    color: white;
+    border-radius: 7px;
+}
+
+#contenedor {
+    background-color: white;
+
+    border-radius: 15px;
+    width: 400px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+footer {
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15%;
+}
+
+.RRSS {
+    display: flex;
+    gap: 15px;
+}
