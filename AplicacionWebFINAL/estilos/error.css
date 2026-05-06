@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+main {
+    background-image: url(../imagenes/banner_general.png);
+    background-size: cover;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 12%;
+}
+
+#contenedor a {
+    background-color: black;
+    color: white;
+    border-radius: 7px;
+    padding: 10px;
+    align-self: flex-end;
+    text-decoration: none;
+}
+
+#contenedor a:hover {
+    background-color: rgb(59, 59, 59);
+}
+
+#contenedor {
+    background-color: white;
+    border-radius: 15px;
+    width: 35%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+#contenedor div {
+    flex-grow: 1;
+}
+
+
+
+footer {
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15%;
+}
+
+.RRSS {
+    display: flex;
+    gap: 15px;
+}
