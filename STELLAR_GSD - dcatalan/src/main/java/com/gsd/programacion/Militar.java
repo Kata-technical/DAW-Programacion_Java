@@ -16,27 +16,32 @@ public class Militar extends Nave {
 	}
 	
 	public void viajar(Destino destino) throws CombustibleInsuficienteException {
-		double consumoBase = 0.0;
-		consumoBase = (destino.distanciaAL() * 0.8) * 1.5;
-
-		if (consumoBase > this.getCombustible()) {
+		if(tieneAutonomia(destino.distanciaAL())) {
+			this.setUbicacionActual(destino);
+		} else {
 			throw new CombustibleInsuficienteException("ERROR. No hay combustible suficiente para llegar");
-		}
+		}		
+
+	}
+
+	public boolean tieneAutonomia(double distancia) {
+		double consumoBase = 0.0;
+		consumoBase = (distancia * 0.8) * 1.5;
 		
 		double random = Math.random();
+		
 		if (random > 0 && random < 0.2) {
 			System.out.println("Encuentro hostil");
 			this.setCombustible(this.getCombustible() - 10);
 		}
 		
-		this.setUbicacionActual(destino);
-		this.setCombustible(this.getCombustible() - consumoBase);
-
-	}
-
-	public boolean tieneAutonomia(double distancia) {
+		if (consumoBase > this.getCombustible()) {
+			return false;
+		} else {
+			this.setCombustible(this.getCombustible() - consumoBase);			
+			return true;
+		}
 		
-		return false;
 	}
 	
 

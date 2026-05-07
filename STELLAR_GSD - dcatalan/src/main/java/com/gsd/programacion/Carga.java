@@ -11,8 +11,17 @@ public class Carga extends Nave {
 	}
 
 	public void viajar(Destino destino) throws CombustibleInsuficienteException {
+	
+		if (tieneAutonomia(destino.distanciaAL())) {
+			this.setUbicacionActual(destino);	
+		} else {
+			throw new CombustibleInsuficienteException("ERROR. No hay combustible suficiente para llegar");
+		}
+	}
+
+	public boolean tieneAutonomia(double distancia) {
 		double consumoBase = 0.0;
-		consumoBase = (destino.distanciaAL() * 1.2) * 2.5;
+		consumoBase = (distancia * 1.2) * 2.5;
 		
 		if (this.capacidadCarga > 500) {
 			System.out.println("ALERTA. Hay sobrecarga en la nave, esto afecta considerablemente el consumo");
@@ -20,18 +29,11 @@ public class Carga extends Nave {
 		}
 		
 		if (consumoBase > this.getCombustible()) {
-			throw new CombustibleInsuficienteException("ERROR. No hay combustible suficiente para llegar");
+			return false;
+		} else {
+			this.setCombustible(this.getCombustible() - consumoBase);
+			return true;
 		}
-		
-		this.setUbicacionActual(destino);
-		this.setCombustible(this.getCombustible() - consumoBase);
-
-	}
-
-	public boolean tieneAutonomia(double distancia) {
-		// no se a que se refiere exactamente (VERIFICA SI PUEDE LLEGAR AL DESTINO)
-		
-		return false;
 	}
 
 	public void mostrarReporte() {
