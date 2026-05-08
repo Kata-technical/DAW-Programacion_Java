@@ -45,6 +45,12 @@ public abstract class Nave implements Navegable {
 		this.ubicacionActual = ubicacionActual;
 	}
 
+	@Override
+	public String toString() {
+		return "Nave [nombre=" + nombre + ", combustible=" + combustible + ", nivelEnergia=" + nivelEnergia
+				+ ", ubicacionActual=" + ubicacionActual + "]";
+	}
+	
 	public void repostar() throws FueraDeSectorException {
 		if (this.getUbicacionActual() == null) {
 			this.setCombustible(100);

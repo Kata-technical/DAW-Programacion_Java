@@ -1,6 +1,7 @@
 package com.gsd.programacion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class App {
@@ -11,6 +12,7 @@ public class App {
 		 * EJEMPLO DE ARGS:
 		 * "naves:exploradora-Voyager-90-3-NADA,carga-Titan-100-2-400,militar-army-80-4-75;destinos:Marte-0.5,Jupiter-2.4"
 		 */
+
 		ArrayList<Nave> listaNaves = new ArrayList<Nave>();
 		ArrayList<Destino> listaDestinos = new ArrayList<Destino>();
 		ArrayList<Mision> listaMisiones = new ArrayList<Mision>();
@@ -28,22 +30,25 @@ public class App {
 		for (int i = 0; i < naves.length; i++) {
 			String[] datos = naves[i].split("-");
 
-			double combustible = Double.parseDouble(datos[1]);
-			int nivelEnergia = Integer.parseInt(datos[2]);
+			double combustible = Double.parseDouble(datos[2]);
+			int nivelEnergia = Integer.parseInt(datos[3]);
 
 			if (datos[0].equalsIgnoreCase("exploradora")) {
 				Exploradora exp = new Exploradora(datos[1], combustible, nivelEnergia, null);
 				listaNaves.add(exp);
+				System.out.println(exp);
 			} else if (datos[0].equalsIgnoreCase("carga")) {
 
 				double carga = Double.parseDouble(datos[4]);
 				Carga car = new Carga(datos[1], combustible, nivelEnergia, null, carga);
 				listaNaves.add(car);
+				System.out.println(car);
 			} else if (datos[0].equalsIgnoreCase("militar")) {
 
 				int blindaje = Integer.parseInt(datos[4]);
 				Militar mil = new Militar(datos[1], combustible, nivelEnergia, null, blindaje);
 				listaNaves.add(mil);
+				System.out.println(mil);
 			} else {
 				throw new NaveInvalidaException("ERROR. La nave es invalida");
 			}
@@ -65,40 +70,65 @@ public class App {
 		Mision m7 = new Mision("7", new Destino("Tlaxcala", 605.39), 0.2);
 		Mision m8 = new Mision("8", new Destino("venturada", 21.08), 0.2);
 		Mision m9 = new Mision("9", new Destino("obani gemini", 817.55), 0.2);
-		listaMisiones.addAll(List.of(m1, m2, m3, m4, m5, m6, m7, m8, m9));
+		Mision m10 = new Mision("10", new Destino("la luna", 401.45), 0.2);
+		Mision m11 = new Mision("11", new Destino("Petroria", 1489.12), 0.2);
+		Mision m12 = new Mision("12", new Destino("BlackWater", 505.01), 0.2);
+
+		listaMisiones.addAll(List.of(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12));
+
+		HashMap<EstadoMision, Long> mapa = new HashMap<EstadoMision, Long>();
 
 		for (int i = 0; i < listaNaves.size(); i++) {
-			for (int j = 0; j < 3; j++) {
+			EstadoMision estado = EstadoMision.PLANIFICADA;
+			for (int j = 0; j < 4; j++) {
+
 				Nave nave = listaNaves.get(i);
-				int numeroLista = (int) (Math.random() * (9 - 1 + 1)) + 1;
-				EstadoMision estado = EstadoMision.PLANIFICADA;
+
+				if (estado == EstadoMision.DERIVA) {
+					break;
+				}
+
+				if (j == 3) {
+					nave.viajar(new Destino(null, 0.0));
+				} else {
+					estado = EstadoMision.DERIVA;
+					break;
+				}
+
+				int numeroLista = (int) (Math.random() * (listaMisiones.size() - 1 + 1)) + 1;
+				estado = EstadoMision.EN_CURSO;
 				int probabilidadExito = 70;
 
 				if (nave instanceof Exploradora) {
 					probabilidadExito += 15;
 				}
-				
-				if (nave.getNivelEnergia()<3) {
+
+				if (nave.getNivelEnergia() < 3) {
 					probabilidadExito -= 10;
 				}
 
 				Mision mision = listaMisiones.get(numeroLista);
 
 				nave.viajar(mision.destino());
-				estado = EstadoMision.EN_CURSO;
-				
+
 				int numeroAleatorio = (int) (Math.random() * (100 - 0 + 1)) + 0;
-				
+
 				if (numeroAleatorio <= probabilidadExito) {
-					estado = EstadoMision.COMPLETADA;	
+					estado = EstadoMision.COMPLETADA;
 				} else {
 					estado = EstadoMision.FALLIDA;
-					
 				}
+
+				// COMO HAGO PARA QUE EL RIESGO AMBIENTAL CAMBIE?
 
 			}
 
 		}
 
+	}
+	
+	public static void algo (Destino destino) {
+		
+		
 	}
 }
