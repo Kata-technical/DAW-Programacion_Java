@@ -1,5 +1,7 @@
 package com.gsd.programacion;
 
+import java.util.List;
+
 public class Exploradora extends Nave {
 
 	public Exploradora(String nombre, double combustible, int nivelEnergia, Destino ubicacionActual)
@@ -29,8 +31,16 @@ public class Exploradora extends Nave {
 		}
 	}
 
+	@Override
 	public void mostrarReporte() {
-		System.out.println("[ESCANEO] Riesgo ambiental reducido a la mitad."); // rehacer luego
-	}
 
+		List<String> datos = List.of("Nombre: " + getNombre(), "Combustible: " + getCombustible(), "Energia: " + getNivelEnergia(),
+				"Ubicacion: " + (getUbicacionActual() == null ? "Base" : getUbicacionActual().planeta()));
+
+		datos.stream().forEach(System.out::println);
+
+		if (getUbicacionActual() != null) {
+			System.out.println("Escaneo ambiental completado.");
+		}
+	}
 }

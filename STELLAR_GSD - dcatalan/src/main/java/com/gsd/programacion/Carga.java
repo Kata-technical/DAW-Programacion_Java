@@ -1,5 +1,7 @@
 package com.gsd.programacion;
 
+import java.util.List;
+
 public class Carga extends Nave {
 
 	private double capacidadCarga;
@@ -11,9 +13,9 @@ public class Carga extends Nave {
 	}
 
 	public void viajar(Destino destino) throws CombustibleInsuficienteException {
-	
+
 		if (tieneAutonomia(destino.distanciaAL())) {
-			this.setUbicacionActual(destino);	
+			this.setUbicacionActual(destino);
 		} else {
 			throw new CombustibleInsuficienteException("ERROR. No hay combustible suficiente para llegar");
 		}
@@ -22,12 +24,12 @@ public class Carga extends Nave {
 	public boolean tieneAutonomia(double distancia) {
 		double consumoBase = 0.0;
 		consumoBase = (distancia * 1.2) * 2.5;
-		
+
 		if (this.capacidadCarga > 500) {
-			System.out.println("ALERTA. Hay sobrecarga en la nave, esto afecta considerablemente el consumo");
+			System.out.println("ALERTA DE SOBRECARGA");
 			consumoBase *= 3;
 		}
-		
+
 		if (consumoBase > this.getCombustible()) {
 			return false;
 		} else {
@@ -37,7 +39,14 @@ public class Carga extends Nave {
 	}
 
 	public void mostrarReporte() {
-		System.out.println("[ESCANEO] Riesgo ambiental reducido a la mitad."); // rehacer luego
+
+		List<String> datos = List.of("Nave de carga: " + getNombre(), "Capacidad: " + capacidadCarga, "Combustible: " + getCombustible());
+
+		datos.stream().forEach(System.out::println);
+
+		if (capacidadCarga > 500) {
+			System.out.println("ALERTA DE SOBRECARGA");
+		}
 	}
 
 }
