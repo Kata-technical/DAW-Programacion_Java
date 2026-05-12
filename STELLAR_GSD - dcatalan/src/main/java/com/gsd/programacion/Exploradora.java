@@ -31,7 +31,6 @@ public class Exploradora extends Nave {
 		}
 	}
 
-	@Override
 	public void mostrarReporte() {
 
 		List<String> datos = List.of("Nombre: " + getNombre(), "Combustible: " + getCombustible(), "Energia: " + getNivelEnergia(),

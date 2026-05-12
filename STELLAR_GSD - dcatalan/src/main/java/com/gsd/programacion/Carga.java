@@ -40,7 +40,7 @@ public class Carga extends Nave {
 
 	public void mostrarReporte() {
 
-		List<String> datos = List.of("Nave de carga: " + getNombre(), "Capacidad: " + capacidadCarga, "Combustible: " + getCombustible());
+		List<String> datos = List.of("Nave de carga: " + getNombre(), "Capacidad: " + capacidadCarga, "Combustible: " + getCombustible(), "Ubicacion: "+getUbicacionActual().planeta());
 
 		datos.stream().forEach(System.out::println);
 
