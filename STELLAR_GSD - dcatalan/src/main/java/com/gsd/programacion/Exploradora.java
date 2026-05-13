@@ -36,7 +36,7 @@ public class Exploradora extends Nave {
 		List<String> datos = List.of("Nombre: " + getNombre(), "Combustible: " + getCombustible(), "Energia: " + getNivelEnergia(),
 				"Ubicacion: " + (getUbicacionActual() == null ? "Base" : getUbicacionActual().planeta()));
 
-		datos.stream().forEach(System.out::println);
+		datos.stream().forEach(n -> System.out.println(n));
 
 		if (getUbicacionActual() != null) {
 			System.out.println("Escaneo ambiental completado.");

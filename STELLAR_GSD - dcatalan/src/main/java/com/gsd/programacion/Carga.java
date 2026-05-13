@@ -40,9 +40,10 @@ public class Carga extends Nave {
 
 	public void mostrarReporte() {
 
-		List<String> datos = List.of("Nave de carga: " + getNombre(), "Capacidad: " + capacidadCarga, "Combustible: " + getCombustible(), "Ubicacion: "+getUbicacionActual().planeta());
+		List<String> datos = List.of("Nave de carga: " + getNombre(), "Capacidad: " + capacidadCarga,
+				"Combustible: " + getCombustible(), "Ubicacion: " + getUbicacionActual().planeta());
 
-		datos.stream().forEach(System.out::println);
+		datos.stream().forEach(n -> System.out.println(n));
 
 		if (capacidadCarga > 500) {
 			System.out.println("ALERTA DE SOBRECARGA");

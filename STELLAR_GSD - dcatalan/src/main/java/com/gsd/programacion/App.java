@@ -37,25 +37,32 @@ public class App {
 
 			double combustible = Double.parseDouble(datos[2]);
 			int nivelEnergia = Integer.parseInt(datos[3]);
+			try {
+				if (datos[0].equalsIgnoreCase("exploradora")) {
+					Exploradora exp = new Exploradora(datos[1], combustible, nivelEnergia, null);
+					listaNaves.add(exp);
+					// System.out.println(exp);
+				} else if (datos[0].equalsIgnoreCase("carga")) {
+					if (datos.length != 5)
+						throw new EstadisticaInvalidaException("ERROR. Te falta la carga");
 
-			if (datos[0].equalsIgnoreCase("exploradora")) {
-				Exploradora exp = new Exploradora(datos[1], combustible, nivelEnergia, null);
-				listaNaves.add(exp);
-				// System.out.println(exp);
-			} else if (datos[0].equalsIgnoreCase("carga")) {
-
-				double carga = Double.parseDouble(datos[4]);
-				Carga car = new Carga(datos[1], combustible, nivelEnergia, null, carga);
-				listaNaves.add(car);
-				// System.out.println(car);
-			} else if (datos[0].equalsIgnoreCase("militar")) {
-
-				int blindaje = Integer.parseInt(datos[4]);
-				Militar mil = new Militar(datos[1], combustible, nivelEnergia, null, blindaje);
-				listaNaves.add(mil);
-				// System.out.println(mil);
-			} else {
-				throw new NaveInvalidaException("ERROR. La nave es invalida");
+					double carga = Double.parseDouble(datos[4]);
+					Carga car = new Carga(datos[1], combustible, nivelEnergia, null, carga);
+					listaNaves.add(car);
+					// System.out.println(car);
+				} else if (datos[0].equalsIgnoreCase("militar")) {
+					if (datos.length != 5)
+						throw new EstadisticaInvalidaException("ERROR. Te falta el blindaje");
+					
+					int blindaje = Integer.parseInt(datos[4]);
+					Militar mil = new Militar(datos[1], combustible, nivelEnergia, null, blindaje);
+					listaNaves.add(mil);
+					// System.out.println(mil);
+				} else {
+					throw new NaveInvalidaException("ERROR. La nave es invalida");
+				}
+			} catch (NaveInvalidaException | EstadisticaInvalidaException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 
@@ -148,6 +155,7 @@ public class App {
 					}
 
 				} catch (CombustibleInsuficienteException e) {
+					System.out.println(e.getMessage());
 					System.out.println(nave.getNombre() + " se quedo en deriva");
 					estado = EstadoMision.DERIVA;
 				}
@@ -170,12 +178,16 @@ public class App {
 				puede = nave.tieneAutonomia(distancia);
 			}
 			if (!puede) {
-				resultados.add(new ResultadoMision(nave, null, EstadoMision.DERIVA)); //nunca se quedan en deriva
+				resultados.add(new ResultadoMision(nave, null, EstadoMision.DERIVA));
 				System.out.println(nave.getNombre() + " en deriva");
 			} else {
-				nave.setUbicacionActual(null);
-				nave.repostar();
-				System.out.println(nave.getNombre() + " regreso a base");
+				try {
+					nave.setUbicacionActual(null);
+					nave.repostar();
+					System.out.println(nave.getNombre() + " regreso a base");
+				} catch (FueraDeSectorException e) {
+					System.out.println(e.getMessage());
+				}
 			}
 			System.out.println("-------------------------------------------");
 
@@ -196,7 +208,7 @@ public class App {
 		System.out.println("Cuantas misiones acabaron de tal forma:");
 		System.out.println(mapaEstados);
 
-		List<Map.Entry<String, Double>> listaEntry = new ArrayList<>(distanciasRecorridas.entrySet()); //TODO:
+		List<Map.Entry<String, Double>> listaEntry = new ArrayList<>(distanciasRecorridas.entrySet()); // TODO: no creo
 		listaEntry.sort(Map.Entry.comparingByValue());
 
 		System.out.println("----------------------------");
@@ -206,7 +218,7 @@ public class App {
 		double promedio = combustibleRestante.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
 		System.out.println("------------------------------");
 		System.out.println(combustibleRestante);
-		System.out.println("El promedio de combustible restante es: "+promedio);
+		System.out.println("El promedio de combustible restante es: " + promedio);
 
 	}
 

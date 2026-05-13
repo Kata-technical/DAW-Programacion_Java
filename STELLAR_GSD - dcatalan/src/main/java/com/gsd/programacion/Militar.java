@@ -51,7 +51,8 @@ public class Militar extends Nave {
 	public void mostrarReporte() {
 
 		List<String> datos = List.of("Nave militar: " + getNombre(), "Blindaje: " + blindaje, "Combustible: " + getCombustible(), "Ubicacion; "+ getUbicacionActual().planeta());
-		datos.stream().forEach(System.out::println);
+		datos.stream().forEach(n -> System.out.println(n));
+
 	}
 
 }
