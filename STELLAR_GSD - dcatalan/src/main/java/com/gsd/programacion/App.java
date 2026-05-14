@@ -62,7 +62,7 @@ public class App {
 					throw new NaveInvalidaException("ERROR. La nave es invalida");
 				}
 			} catch (NaveInvalidaException | EstadisticaInvalidaException e) {
-				System.out.println(e.getMessage());
+				System.err.println(e.getMessage());
 			}
 		}
 
@@ -155,7 +155,7 @@ public class App {
 					}
 
 				} catch (CombustibleInsuficienteException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 					System.out.println(nave.getNombre() + " se quedo en deriva");
 					estado = EstadoMision.DERIVA;
 				}
@@ -186,7 +186,7 @@ public class App {
 					nave.repostar();
 					System.out.println(nave.getNombre() + " regreso a base");
 				} catch (FueraDeSectorException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 				}
 			}
 			System.out.println("-------------------------------------------");
