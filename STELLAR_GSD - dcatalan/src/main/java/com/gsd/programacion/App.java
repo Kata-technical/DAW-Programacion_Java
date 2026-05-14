@@ -45,6 +45,8 @@ public class App {
 				} else if (datos[0].equalsIgnoreCase("carga")) {
 					if (datos.length != 5)
 						throw new EstadisticaInvalidaException("ERROR. Te falta la carga");
+				    if (datos[4].equalsIgnoreCase("NADA"))
+				        throw new EstadisticaInvalidaException("ERROR. La nave Carga necesita capacidad de carga");
 
 					double carga = Double.parseDouble(datos[4]);
 					Carga car = new Carga(datos[1], combustible, nivelEnergia, null, carga);
@@ -53,6 +55,8 @@ public class App {
 				} else if (datos[0].equalsIgnoreCase("militar")) {
 					if (datos.length != 5)
 						throw new EstadisticaInvalidaException("ERROR. Te falta el blindaje");
+				    if (datos[4].equalsIgnoreCase("NADA"))  // por si acaso
+				        throw new EstadisticaInvalidaException("ERROR. La nave Carga necesita capacidad de carga");
 					
 					int blindaje = Integer.parseInt(datos[4]);
 					Militar mil = new Militar(datos[1], combustible, nivelEnergia, null, blindaje);

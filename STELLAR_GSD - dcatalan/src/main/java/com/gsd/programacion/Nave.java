@@ -38,7 +38,7 @@ public abstract class Nave implements Navegable {
 	}
 	
 	public void setCombustible(double combustible) {
-		this.combustible = combustible;
+		this.combustible = Math.max(0, combustible);
 	}
 
 	public void setUbicacionActual(Destino ubicacionActual) {
